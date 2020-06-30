@@ -5,7 +5,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/ugorji/go/codec"
 	"log"
 	"net"
 	"net/rpc"
@@ -13,6 +12,8 @@ import (
 	"reflect"
 	"runtime"
 	"time"
+
+	"github.com/ugorji/go/codec"
 )
 
 var version = "development"
@@ -85,7 +86,7 @@ func runServer(listener net.Listener) {
 func startServer() {
 	err := os.Remove(socket)
 	if err != nil && !os.IsNotExist(err) {
-		log.Printf(`removing "%s": %s`, kongPrefix, err)
+		log.Printf(`removing "%s": %s`, *kongPrefix, err)
 		return
 	}
 
